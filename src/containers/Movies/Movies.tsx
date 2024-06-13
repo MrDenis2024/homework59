@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import {MovieInterface} from '../../../types';
+import React, {ChangeEvent, useState} from 'react';
+import {MovieInterface} from '../../types';
 import MoviesList from '../../components/MoviesList/MoviesList';
+import MoviesForm from '../../components/MoviesForm/MoviesForm';
 import './Movies.css';
 
 
@@ -10,7 +11,12 @@ const Movies = () => {
     {id: '2', title: 'Spider Man'},
     {id: '3', title: 'Taxi'},
   ]);
+  const [currentMovie, setCurrentMovie] = useState('');
 
+
+  const movieChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setCurrentMovie(event.target.value);
+  };
 
   const removeMovie = (id: string) => {
     setMovies((prevState) => {
@@ -18,20 +24,33 @@ const Movies = () => {
     });
   };
 
-  const changeMovie = (event: React.ChangeEvent<HTMLInputElement>, id: string) => {
-    const movieCopy = movies.map((movie) => {
-      if(movie.id === id) {
-        return {...movie, title: event.target.value};
-      }
+  const changeMovie = (event: ChangeEvent<HTMLInputElement>, id: string) => {
+    setMovies((prevState) => {
+      return prevState.map((movie) => {
+        if(movie.id === id) {
+          return {...movie, title: event.target.value};
+        }
 
-      return movie;
+        return movie;
+      });
     });
+  };
 
-    setMovies(movieCopy);
+  const addMovie = (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const newMovie = {
+      id: Math.random().toString(),
+      title: currentMovie.trim()
+    };
+    setMovies((prevState) => {
+      return [...prevState, newMovie];
+    });
+    setCurrentMovie('');
   };
 
   return (
     <div className='block-movies'>
+      <MoviesForm onCurrentMovie={currentMovie} onMovieChange={(event) => movieChange(event)} onNewMovie={(event) => addMovie(event)} />
       <h2>To watch list:</h2>
       <MoviesList movies={movies} onRemove={removeMovie} onChangeMovie={changeMovie} />
     </div>

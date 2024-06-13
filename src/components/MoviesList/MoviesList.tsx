@@ -1,6 +1,6 @@
 import React from 'react';
 import MovieItem from './MovieItem';
-import {MovieInterface} from '../../../types';
+import {MovieInterface} from '../../types';
 
 interface Props {
   movies: MovieInterface[];

@@ -1,6 +1,6 @@
 import React, {MouseEventHandler} from 'react';
-import {MovieInterface} from '../../../types';
 import './MovieItem.css';
+import {MovieInterface} from '../../types';
 
 interface Props {
   movie: MovieInterface;

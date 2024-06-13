@@ -1,0 +1,29 @@
+.movie-form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 19px;
+}
+
+.input-form {
+  width: 80%;
+  padding: 4px 0 4px 10px;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.add-movie {
+  color: white;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #00BB34;
+}
+
+.add-movie:hover {
+  border: 1px solid #014614;
+}
+
+.add-movie:active {
+  box-shadow: 2px 2px 5px 0 #014614;
+}
