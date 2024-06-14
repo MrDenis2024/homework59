@@ -1,0 +1,27 @@
+.block-joke {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  }
+
+.joke {
+  margin-bottom: 20px;
+  font-size: 19px;
+}
+
+.add-joke {
+  color: white;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: #00BB34;
+}
+
+.add-joke:hover {
+  border: 1px solid #014614;
+}
+
+.add-joke:active {
+  box-shadow: 2px 2px 5px 0 #014614;
+}
