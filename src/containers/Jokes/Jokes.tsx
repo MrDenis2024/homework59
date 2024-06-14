@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import './Jokes.css';
+import JokeBtn from '../../components/JokeBtn/JokeBtn';
 
 const url = 'https://api.chucknorris.io/jokes/random';
 
@@ -31,7 +32,7 @@ const Jokes = () => {
       <div className='joke'>
         {joke}
       </div>
-      <button className='add-joke' onClick={fetchData}>New joke</button>
+      <JokeBtn title='New joke' onNewJoke={fetchData} />
     </div>
   );
 };
