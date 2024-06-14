@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
-import './Jokes.css';
 import JokeBtn from '../../components/JokeBtn/JokeBtn';
+import './Jokes.css';
 
 const url = 'https://api.chucknorris.io/jokes/random';
 
@@ -16,9 +16,11 @@ const Jokes = () => {
         const newPost = jokes.value;
 
         setJoke(newPost);
+      } else {
+        console.error('Ошибка получения данных');
       }
     } catch (e) {
-      console.error('Ошибка данных ' + e);
+      console.error('Ошибка ' + e);
     }
   };
 

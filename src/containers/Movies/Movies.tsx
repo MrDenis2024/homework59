@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {MovieInterface} from '../../types';
 import MoviesList from '../../components/MoviesList/MoviesList';
 import MoviesForm from '../../components/MoviesForm/MoviesForm';
@@ -6,12 +6,20 @@ import './Movies.css';
 
 
 const Movies = () => {
-  const [movies, setMovies] = useState<MovieInterface[]>([
-    {id: '1', title: 'Harry Potter'},
-    {id: '2', title: 'Spider Man'},
-    {id: '3', title: 'Taxi'},
-  ]);
+  const [movies, setMovies] = useState<MovieInterface[]>([]);
   const [currentMovie, setCurrentMovie] = useState('');
+
+  useEffect(() => {
+    const storage = localStorage.getItem('movies');
+    if(storage !== null) {
+      setMovies(JSON.parse(storage));
+    }
+
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('movies', JSON.stringify(movies));
+  }, [movies]);
 
 
   const movieChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +48,7 @@ const Movies = () => {
     event.preventDefault();
     const newMovie = {
       id: Math.random().toString(),
-      title: currentMovie.trim()
+      title: currentMovie,
     };
     setMovies((prevState) => {
       return [...prevState, newMovie];
